@@ -1,0 +1,53 @@
+language:
+
+node_js:
+  - 4.2.3
+
+services:
+  # - #any supported service
+
+env:
+  # - #env1=foo
+  # - #env2=bar
+
+# matrix:
+
+build:
+
+  # pre_ci:
+
+  # pre_ci_boot:
+  #   image_name:
+  #   image_tag:
+  #   pull:
+  #   options:
+  ci:
+    - docker build -t goodwaygroup/hello-world .
+
+  # post_ci:
+  #   - #command1
+  #   - #command2
+  # on_success:
+  #   - #command1
+  #   - #command2
+  # on_failure:
+  #   - #command1
+  #   - #command2
+  # cache:
+  # cache_dir_list:
+  #   - #dir1
+  push:
+    - docker push goodwaygroup/hello-world
+
+integrations:
+ # notifications:
+ #   - integrationName:
+ #     type:
+ #     recipients:
+ #       - #recp1
+ #       - #recp2
+
+  hub:
+    - integrationName: docker-hub
+      type: docker
+      # agent_only:

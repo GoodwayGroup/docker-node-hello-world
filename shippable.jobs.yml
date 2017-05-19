@@ -1,0 +1,22 @@
+jobs:
+  - name: docker-node-hello-world_runCI      # required
+    type: runCI             # required
+    flags:
+      - hello-world
+    steps:
+      - OUT: hello-world-image
+  - name: hello-world-manifest                             #required
+    type: manifest   
+    flags:
+      - hello-world
+    steps:
+      - IN: hello-world-image
+      - IN: docker-node-hello-world_runCI
+  - name: hello-world-deploy                          #required
+    type: deploy                            #required
+    flags:
+      - hello-world
+    steps:
+      - IN: hello-world-manifest                          #required
+      - IN: hello-world-cluster                       #required
+      - IN: hello-world-deploy-options                     #optional override

@@ -1,0 +1,29 @@
+resources:
+  - name: hello-world-image                      #required
+    type: image                                  #required
+    flags:
+      - hello-world
+    integration: docker-hub                        #required
+    pointer:
+      sourceName: "goodwaygroup/hello-world"                    #required
+    seed:
+      versionName: "latest"                    #optional
+  - name: hello-world-cluster                              #required
+    type: cluster                               #required
+    flags:
+      - hello-world
+    integration: kube             #required
+    pointer:
+      sourceName: "tectonic"                    #required
+  - name: hello-world-deploy-options                              #required
+    type: dockerOptions                         #required
+    flags:
+      - hello-world
+    version:
+      labels:
+        "app": "hello-world"
+      deployment:
+        replicas: 2
+      pod:
+        imagePullSecrets:
+          - name: dockerhub
